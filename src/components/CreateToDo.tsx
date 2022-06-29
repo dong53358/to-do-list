@@ -16,6 +16,8 @@ const Input = styled.input`
   background-color: #487eb0;
   border-bottom: 1px solid white;
   color: white;
+  font-size: 15px;
+  font-weight: 600;
   &::placeholder {
     color: white;
   }
@@ -29,7 +31,8 @@ const Add = styled.button`
   border-radius: 13px;
   color: #487eb0;
   font-size: 15px;
-  margin-left: 5px;
+  font-weight: 600px;
+  margin-left: 10px;
   border: 0px;
   display: inline-flex;
   align-items: center;

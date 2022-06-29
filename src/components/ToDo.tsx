@@ -11,13 +11,13 @@ const Li = styled.li`
 `;
 
 const TextDiv = styled.div`
-  width: 250px;
+  width: 300px;
   height: 20px;
   margin-right: 50px;
 `;
 
 const Text = styled.span`
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
 `;
 
@@ -27,6 +27,8 @@ const Button = styled.button`
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 3px;
+  font-size: 15px;
+  font-weight: 600;
   &:hover {
     background-color: #95afc0;
   }
@@ -36,13 +38,14 @@ const XButton = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   border-radius: 3px;
   border: 0px;
   margin-bottom: 5px;
   background-color: #c7ecee;
   color: #487eb0;
+  font-size: 15px;
   &:hover {
     background-color: #95afc0;
     color: red;

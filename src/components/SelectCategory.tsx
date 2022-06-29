@@ -8,6 +8,8 @@ const Selector = styled.select`
   color: white;
   border-radius: 3px;
   border: none;
+  font-size: 15px;
+  font-weight: 600;
   &:focus {
     outline: none;
   }
