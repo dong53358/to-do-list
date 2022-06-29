@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { categoryState, toDoState } from "../atoms";
+import { categoriesState } from "../atoms";
 import { FaPlus } from "react-icons/fa";
 
 const Form = styled.form`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
 `;
 
@@ -24,10 +24,10 @@ const Input = styled.input`
   }
 `;
 
-const Add = styled.button`
+const Button = styled.button`
   background-color: #c7ecee;
   border-radius: 13px;
-  color: #487eb0;
+  color: red;
   font-size: 15px;
   margin-left: 5px;
   border: 0px;
@@ -42,34 +42,33 @@ const Add = styled.button`
 `;
 
 interface IForm {
-  toDo: string;
+  category: string;
 }
+const LOCAL_CATE_KEY = "category";
 
-function CreateToDo() {
-  const setToDos = useSetRecoilState(toDoState);
-  const category = useRecoilValue(categoryState);
+const CreateCategory = () => {
+  const [categories, setCategories] = useRecoilState(categoriesState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
-  const onSubmit = ({ toDo }: IForm) => {
-    setToDos((oldToDos) => [
-      { text: toDo, id: Date.now(), category },
-      ...oldToDos,
-    ]);
-    setValue("toDo", "");
+  const handleValid = (data: IForm) => {
+    setCategories([data.category, ...categories]);
+    localStorage.setItem(
+      LOCAL_CATE_KEY,
+      JSON.stringify([data.category, ...categories])
+    );
+    setValue("category", "");
   };
+
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(handleValid)}>
       <Input
-        {...register("toDo", {
-          required: "Please write a To Do",
-          maxLength: 18,
-        })}
-        placeholder="Write a to do"
+        {...register("category", { required: "Please write a category" })}
+        placeholder="Write a category"
       />
-      <Add>
+      <Button>
         <FaPlus />
-      </Add>
+      </Button>
     </Form>
   );
-}
+};
 
-export default CreateToDo;
+export default CreateCategory;
